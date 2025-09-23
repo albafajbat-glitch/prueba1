@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
+
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,10 +9,10 @@
   <meta name="theme-color" content="#000000" />
   <style>
     :root {
-      --azul: #0052cc;   /* ajusta si quieres otro tono */
-      --amarillo: #fdd72ef9; /* ajusta si quieres otro tono */
+      --azul: #0052cc;   
+      --amarillo: #fdd72ef9; 
       --gris: #0f172a;
-      --gris2: #111827;
+      --gris2: #536a9b;
       --borde: rgba(255,255,255,.12);
     }
     * { box-sizing: border-box; }
@@ -49,22 +51,26 @@
     @keyframes blink { from { opacity: 1; } to { opacity: .2; } }
   .chip-section.active{ background: rgba(16,185,129,.18); color:#eafff6; border-color: rgba(16,185,129,.4);}
   </style>
+
+
 </head>
 <body>
   <div class="wrap">
     <header>
       <div class="title">CONCIERTO QUEVEDO – Coliseum Coruña 2025</div>
-      <div class="pill" id="status">Listo</div>
+      
     </header>
 
     <div class="card" style="margin-top:14px">
       <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
         <div>
-          <div style="font-weight:700; font-size:16px;">Configura tu sección</div>
-          <div class="hint">Puedes entrar con un QR que lleve tu sección en la URL o seleccionarla aquí.</div>
+          <div style="font-weight:700; font-size:16px;">Selecciona tú sección</div>
+          
         </div>
         <div class="preview" aria-hidden="true"><div></div><div></div></div>
       </div>
+
+
 
       <div class="grid" style="margin-top:12px;">
         <div>
@@ -72,15 +78,17 @@
           <input id="section" type="text" placeholder="Ej. A1, Pista, 205..." />
           <div class="hint">También acepta el parámetro <code>?section=A1</code> en la URL.</div>
         </div>
+
+
         <div>
           <label>Modo de color</label>
           <div class="mode" role="tablist" aria-label="Modo de color">
-            <div class=\"chip\" data-mode=\"mitad\">Mitad-Mitad</div>
-            <div class=\"chip active\" data-mode=\"parpadeo\">Parpadeo</div>
+            
+            <div class="chip active\" data-mode="parpadeo\">Parpadeo</div>
             <div class="chip" data-mode="fijo-azul">Fijo Azul</div>
             <div class="chip" data-mode="fijo-amarillo">Fijo Amarillo</div>
           </div>
-          <div class="hint">"Mitad-Mitad" muestra media pantalla azul y media amarilla. "Parpadeo" alterna ambos colores.</div>
+          
         </div>
       </div>
 
@@ -88,21 +96,21 @@
         <div>
           <label>Color Azul</label>
           <input type="color" id="colorAzul" value="#0052cc" />
-          <div class="hint">Ajusta el tono de azul si lo necesitas.</div>
+          
         </div>
         <div>
           <label>Color Amarillo</label>
           <input type="color" id="colorAmarillo" value="#ffd100" />
-          <div class="hint">Ajusta el tono de amarillo si lo necesitas.</div>
+          
         </div>
       </div>
 
       <div class="row" style="margin-top:16px;">
-        <button class="btn" id="start">Activar colores (pantalla completa)</button>
+        <button class="btn" id="start">Activar colores </button>
         <button class="btn" id="stop" style="display:none;">Salir</button>
       </div>
 
-      <p class="hint" style="margin-top:10px;">Sugerencia: sube el brillo al máximo y desactiva el modo noche para mejor efecto.</p>
+      <p class="hint" style="margin-top:10px;">SUGERENCIA: sube el brillo al máximo.</p>
     </div>
 
     <footer>
@@ -112,36 +120,32 @@
       <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px;">
         <div>
           <div style="font-weight:700; font-size:16px;">Selecciona tu sección en un toque</div>
-          <div class="hint">Prototipo basado en el mapa del Coliseum. Si tu fila no aparece, escribe el código manualmente arriba.</div>
+          <div class="hint">Prototipo basado en el mapa del Coliseum.</div>
+          <div class="hint"> Recuerda si estas en PISTA escoge el que quieras.</div>
         </div>
       </div>
 
+
+
       <div id="selector-sections" class="mode" aria-label="Selector de sección">
-        <!-- Pista / Anillo central -->
+        <!-- PISTA -->
         <div class="chip chip-section" data-section="PISTA">PISTA</div>
-        <div class="chip chip-section" data-section="ESCENARIO">ESCENARIO</div>
-        <!-- Anillo medio (ejemplo) -->
-        <div class="chip chip-section" data-section="4">4</div>
-        <div class="chip chip-section" data-section="5">5</div>
-        <div class="chip chip-section" data-section="6">6</div>
-        <div class="chip chip-section" data-section="7">7</div>
-        <div class="chip chip-section" data-section="8">8</div>
-        <div class="chip chip-section" data-section="9">9</div>
-        <!-- Exterior (ejemplo numérico 1–10) -->
-        <div class="chip chip-section" data-section="1">1</div>
-        <div class="chip chip-section" data-section="2">2</div>
-        <div class="chip chip-section" data-section="3">3</div>
-        <div class="chip chip-section" data-section="10">10</div>
-        <!-- Etiquetas frecuentes (puedes editar/añadir) -->
-        <div class="chip chip-section" data-section="101">101</div>
-        <div class="chip chip-section" data-section="105">105</div>
-        <div class="chip chip-section" data-section="118">118</div>
-        <div class="chip chip-section" data-section="164">164</div>
-        <div class="chip chip-section" data-section="232">232</div>
-        <div class="chip chip-section" data-section="82">82</div>
+
+        <!-- TENDIDO BAJO -->
+        <div class="chip chip-section" data-section="TENDIDO BAJO">TENDIDO BAJO</div>
+        
+        <!-- TENDIDO MEDIO (ejemplo) -->
+        <div class="chip chip-section" data-section="TENDIDO MEDIO">TENDIDO MEDIO</div>
+        
+        <!-- TENDIDO ALTO (ejemplo numérico 1–10) -->
+        <div class="chip chip-section" data-section="TENDIDO ALTO">TENDIDO ALTO</div>
+        
+        <!-- ANFITEATRO -->
+        <div class="chip chip-section" data-section="ANFITEATRO">ANFITEATRO</div>
+        
       </div>
 
-      <p class="hint" style="margin-top:8px;">Consejo: puedes personalizar esta lista en el código (busca <code>chip-section</code>) para reflejar exactamente el mapa oficial.</p>
+      <p class="hint" style="margin-top:8px;">RECUERDA: PISTA-ALEATORIO, TENDIDO BAJO-AMARILLO, TENDIDO MEDIO-AZUL, TENDIDO-ALTO-AMARRILLO, ANFITEATRO-AZUL. </p>
     </div>
 
     <footer>

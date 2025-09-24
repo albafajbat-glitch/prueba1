@@ -1,6 +1,3 @@
-# prueba1
-El objetivo es crear flash card de 2 colores
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,166 +6,119 @@ El objetivo es crear flash card de 2 colores
   <title>Colores del Concierto</title>
   <meta name="theme-color" content="#000000" />
   <style>
-    :root {
-      --azul: #0052cc;   /* ajusta si quieres otro tono */
-      --amarillo: #ffd100; /* ajusta si quieres otro tono */
-      --gris: #0f172a;
-      --gris2: #111827;
-      --borde: rgba(255,255,255,.12);
+    :root{
+      /* Colores fijos (ya no hay selector de tono) */
+      --azul:#0052cc;
+      --amarillo:#fdd72e;
+      --gris:#0f172a;
+      --gris2:#020203;
+      --borde:rgba(255,255,255,.12);
     }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial; background: radial-gradient(1200px 800px at 10% 10%, #1e293b, #0b1020); color: #f8fafc; }
-    .wrap { max-width: 720px; margin: 0 auto; padding: 24px; }
-    header { display:flex; align-items:center; justify-content:space-between; gap:12px; }
-    .title { font-size: clamp(22px, 3vw, 28px); font-weight: 700; letter-spacing: .2px; }
-    .card { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border: 1px solid var(--borde); border-radius: 16px; padding: 18px; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
-    .grid { display:grid; grid-template-columns: 1fr; gap: 12px; }
-    @media (min-width: 640px){ .grid { grid-template-columns: 1fr 1fr; } }
-    label { font-size: 14px; opacity: .9; }
-    input[type="text"], select { width: 100%; margin-top: 6px; padding: 12px 14px; background: #0b1326; border: 1px solid var(--borde); border-radius: 12px; color: #e5e7eb; outline: none; }
-    .hint { font-size: 12px; color: #94a3b8; margin-top: 6px; }
-    .btn { appearance:none; border:1px solid var(--borde); background: linear-gradient(180deg, #18254a, #0d1430); color:#e5e7eb; padding:14px 16px; border-radius: 14px; cursor:pointer; font-weight: 700; letter-spacing:.3px; width:100%; transition: transform .05s ease, filter .2s ease; }
-    .btn:hover { filter: brightness(1.08); }
-    .btn:active { transform: translateY(1px); }
-    .row { display:flex; gap: 10px; }
-    .row > * { flex: 1; }
-    .pill { display:inline-flex; align-items:center; gap:8px; font-size:12px; padding:8px 10px; border-radius:999px; border:1px solid var(--borde); background: rgba(255,255,255,.06); }
-    .preview { height: 48px; border-radius: 10px; overflow:hidden; border:1px solid var(--borde); display:flex; }
-    .preview > div:first-child { background: var(--azul); flex:1; }
-    .preview > div:last-child { background: var(--amarillo); flex:1; }
-    .mode { display:flex; gap:8px; flex-wrap:wrap; }
-    .chip { border:1px solid var(--borde); background: rgba(255,255,255,.04); color:#cbd5e1; padding:10px 12px; border-radius: 999px; cursor:pointer; user-select:none; }
-    .chip.active { background: rgba(255,255,255,.12); color:#ffffff; border-color: rgba(255,255,255,.25); }
-    footer { margin-top: 20px; color:#94a3b8; font-size:12px; text-align:center; }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial;background:radial-gradient(1200px 800px at 10% 10%,#1e293b,#0b1020);color:#f8fafc}
+    .wrap{max-width:720px;margin:0 auto;padding:24px}
+
+    /* Cabecera centrada */
+    header{display:flex;align-items:center;justify-content:center;padding:8px 0}
+    .title{font-size:clamp(22px,3vw,28px);font-weight:800;letter-spacing:.3px;text-align:center}
+
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:1px solid var(--borde);border-radius:16px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .grid{display:grid;grid-template-columns:1fr;gap:12px} /* siempre una columna */
+    label{font-size:14px;opacity:.9}
+    input[type="text"]{width:100%;margin-top:6px;padding:12px 14px;background:#0b1326;border:1px solid var(--borde);border-radius:12px;color:#e5e7eb;outline:none}
+    .hint{font-size:12px;color:#94a3b8;margin-top:6px}
+    .btn{appearance:none;border:1px solid var(--borde);background:linear-gradient(180deg,#18254a,#0d1430);color:#e5e7eb;padding:14px 16px;border-radius:14px;cursor:pointer;font-weight:700;letter-spacing:.3px;width:100%;transition:transform .05s ease,filter .2s ease}
+    .btn:hover{filter:brightness(1.08)}
+    .btn:active{transform:translateY(1px)}
+    .row{display:flex;gap:10px}
+    .row>*{flex:1}
+    .preview{height:48px;border-radius:10px;overflow:hidden;border:1px solid var(--borde);display:flex}
+    .preview>div:first-child{background:var(--azul);flex:1}
+    .preview>div:last-child{background:var(--amarillo);flex:1}
+    .mode{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{border:1px solid var(--borde);background:rgba(255,255,255,.04);color:#cbd5e1;padding:10px 12px;border-radius:999px;cursor:pointer;user-select:none}
+    .chip.active{background:rgba(255,255,255,.12);color:#ffffff;border-color:rgba(255,255,255,.25)}
+    .chip-section.active{background:rgba(16,185,129,.18);color:#eafff6;border-color:rgba(16,185,129,.4)}
+    footer{margin-top:20px;color:#94a3b8;font-size:12px;text-align:center}
 
     /* Pantalla de show */
-    #show { position: fixed; inset:0; display:none; background:#000; }
-    #show.showing { display:block; }
-    .fill { position:absolute; inset:0; }
-    .half { position:absolute; inset:0; }
-    .half.left { right:50%; background: var(--azul); }
-    .half.right { left:50%; background: var(--amarillo); }
-    .flash { animation: blink 1.2s infinite alternate ease-in-out; }
-    @keyframes blink { from { opacity: 1; } to { opacity: .2; } }
-  .chip-section.active{ background: rgba(16,185,129,.18); color:#eafff6; border-color: rgba(16,185,129,.4);}
+    #show{position:fixed;inset:0;display:none;background:#000}
+    #show.showing{display:block}
+    .fill{position:absolute;inset:0}
+    .half{position:absolute;inset:0}
+    .half.left{right:50%;background:var(--azul)}
+    .half.right{left:50%;background:var(--amarillo)}
+    .flash{animation:blink 1.2s infinite alternate ease-in-out}
+    @keyframes blink{from{opacity:1}to{opacity:.2}}
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <div class="title">🎵 Efecto Azul & Amarillo – Coliseum Coruña</div>
-      <div class="pill" id="status">Listo</div>
+      <div class="title">CONCIERTO QUEVEDO-CORUÑA 2025</div>
     </header>
 
     <div class="card" style="margin-top:14px">
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
         <div>
-          <div style="font-weight:700; font-size:16px;">Configura tu sección</div>
-          <div class="hint">Puedes entrar con un QR que lleve tu sección en la URL o seleccionarla aquí.</div>
+          <div style="font-weight:700;font-size:16px;">Selecciona tu sección:</div>
         </div>
         <div class="preview" aria-hidden="true"><div></div><div></div></div>
       </div>
 
+      <!-- GRADAS -->
       <div class="grid" style="margin-top:12px;">
         <div>
           <label>Sección / Grada</label>
-          <input id="section" type="text" placeholder="Ej. A1, Pista, 205..." />
-          <div class="hint">También acepta el parámetro <code>?section=A1</code> en la URL.</div>
+          <input id="section" type="text" placeholder="Ej: Pista, Tendido Alto, ..." />
+          <div id="selector-sections" class="mode" aria-label="Selector de sección" style="margin-top:8px;">
+            <div class="chip chip-section" data-section="PISTA">PISTA</div>
+            <div class="chip chip-section" data-section="TENDIDO BAJO">TENDIDO BAJO</div>
+            <div class="chip chip-section" data-section="TENDIDO MEDIO">TENDIDO MEDIO</div>
+            <div class="chip chip-section" data-section="TENDIDO ALTO">TENDIDO ALTO</div>
+            <div class="chip chip-section" data-section="ANFITEATRO">ANFITEATRO</div>
+          </div>
         </div>
+
+        <!-- MODO COLOR (debajo de gradas) -->
         <div>
-          <label>Modo de color</label>
+          <label>Modo de color:</label>
           <div class="mode" role="tablist" aria-label="Modo de color">
-            <div class=\"chip\" data-mode=\"mitad\">Mitad-Mitad</div>
-            <div class=\"chip active\" data-mode=\"parpadeo\">Parpadeo</div>
+            
             <div class="chip" data-mode="fijo-azul">Fijo Azul</div>
             <div class="chip" data-mode="fijo-amarillo">Fijo Amarillo</div>
           </div>
-          <div class="hint">"Mitad-Mitad" muestra media pantalla azul y media amarilla. "Parpadeo" alterna ambos colores.</div>
         </div>
       </div>
 
-      <div class="grid" style="margin-top:12px;">
-        <div>
-          <label>Color Azul</label>
-          <input type="color" id="colorAzul" value="#0052cc" />
-          <div class="hint">Ajusta el tono de azul si lo necesitas.</div>
-        </div>
-        <div>
-          <label>Color Amarillo</label>
-          <input type="color" id="colorAmarillo" value="#ffd100" />
-          <div class="hint">Ajusta el tono de amarillo si lo necesitas.</div>
-        </div>
-      </div>
+      <!-- QUITADOS selectores de tono -->
 
       <div class="row" style="margin-top:16px;">
-        <button class="btn" id="start">Activar colores (pantalla completa)</button>
+        <button class="btn" id="start">Activar colores</button>
         <button class="btn" id="stop" style="display:none;">Salir</button>
       </div>
 
-      <p class="hint" style="margin-top:10px;">Sugerencia: sube el brillo al máximo y desactiva el modo noche para mejor efecto.</p>
+      <p class="hint" style="margin-top:10px;">SUGERENCIA: sube el brillo al máximo.</p>
     </div>
 
-    <footer>
-      Hecho para un artista canario 🇮🇨 · Funciona sin internet una vez cargado.
-        <!-- Selector rápido por secciones -->
-    <div class="card" style="margin-top:14px">
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px;">
-        <div>
-          <div style="font-weight:700; font-size:16px;">Selecciona tu sección en un toque</div>
-          <div class="hint">Prototipo basado en el mapa del Coliseum. Si tu fila no aparece, escribe el código manualmente arriba.</div>
-        </div>
-      </div>
-
-      <div id="selector-sections" class="mode" aria-label="Selector de sección">
-        <!-- Pista / Anillo central -->
-        <div class="chip chip-section" data-section="PISTA">PISTA</div>
-        <div class="chip chip-section" data-section="ESCENARIO">ESCENARIO</div>
-        <!-- Anillo medio (ejemplo) -->
-        <div class="chip chip-section" data-section="4">4</div>
-        <div class="chip chip-section" data-section="5">5</div>
-        <div class="chip chip-section" data-section="6">6</div>
-        <div class="chip chip-section" data-section="7">7</div>
-        <div class="chip chip-section" data-section="8">8</div>
-        <div class="chip chip-section" data-section="9">9</div>
-        <!-- Exterior (ejemplo numérico 1–10) -->
-        <div class="chip chip-section" data-section="1">1</div>
-        <div class="chip chip-section" data-section="2">2</div>
-        <div class="chip chip-section" data-section="3">3</div>
-        <div class="chip chip-section" data-section="10">10</div>
-        <!-- Etiquetas frecuentes (puedes editar/añadir) -->
-        <div class="chip chip-section" data-section="101">101</div>
-        <div class="chip chip-section" data-section="105">105</div>
-        <div class="chip chip-section" data-section="118">118</div>
-        <div class="chip chip-section" data-section="164">164</div>
-        <div class="chip chip-section" data-section="232">232</div>
-        <div class="chip chip-section" data-section="82">82</div>
-      </div>
-
-      <p class="hint" style="margin-top:8px;">Consejo: puedes personalizar esta lista en el código (busca <code>chip-section</code>) para reflejar exactamente el mapa oficial.</p>
-    </div>
-
-    <footer>
+    <footer>Funciona sin internet una vez cargado.</footer>
   </div>
 
   <!-- Capa show -->
   <div id="show" aria-hidden="true">
-    <div id="layer-azul" class="fill" style="background: var(--azul); display:none;"></div>
-    <div id="layer-amarillo" class="fill" style="background: var(--amarillo); display:none;"></div>
+    <div id="layer-azul" class="fill" style="background:var(--azul);display:none;"></div>
+    <div id="layer-amarillo" class="fill" style="background:var(--amarillo);display:none;"></div>
     <div id="half-left" class="half left" style="display:none;"></div>
     <div id="half-right" class="half right" style="display:none;"></div>
   </div>
 
   <script>
-    // Utilidades
-    const $ = (sel) => document.querySelector(sel);
+    const $ = (sel)=>document.querySelector(sel);
     const params = new URLSearchParams(location.search);
 
-    // Estado
-    let mode = 'parpadeo';
-    let wakeLock = null;
+
 
     // Elementos
-    const statusEl = $('#status');
     const sectionInput = $('#section');
     const startBtn = $('#start');
     const stopBtn = $('#stop');
@@ -177,133 +127,105 @@ El objetivo es crear flash card de 2 colores
     const layerAmarillo = $('#layer-amarillo');
     const halfLeft = $('#half-left');
     const halfRight = $('#half-right');
-    const colorAzul = $('#colorAzul');
-    const colorAmarillo = $('#colorAmarillo');
 
-    // Carga sección desde URL
+    // Sección desde URL
     const sectionFromURL = params.get('section') || params.get('seccion') || '';
     if (sectionFromURL) sectionInput.value = sectionFromURL;
 
     // Chips de modo
-    document.querySelectorAll('.chip').forEach(chip => {
-      chip.addEventListener('click', () => {
-        document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.chip[data-mode]').forEach(chip=>{
+      chip.addEventListener('click', ()=>{
+        document.querySelectorAll('.chip[data-mode]').forEach(c=>c.classList.remove('active'));
         chip.classList.add('active');
         mode = chip.dataset.mode;
       });
     });
 
-    // Actualiza colores en vivo
-    function applyColors(){
-      document.documentElement.style.setProperty('--azul', colorAzul.value);
-      document.documentElement.style.setProperty('--amarillo', colorAmarillo.value);
-    }
-    colorAzul.addEventListener('input', applyColors);
-    colorAmarillo.addEventListener('input', applyColors);
-    applyColors();
-
-    // Selector rápido de secciones (chips)
-    document.querySelectorAll('.chip-section').forEach(ch => {
-      ch.addEventListener('click', () => {
+    // Selector rápido de secciones
+    document.querySelectorAll('.chip-section').forEach(ch=>{
+      ch.addEventListener('click', ()=>{
         const sec = ch.dataset.section;
         sectionInput.value = sec;
-        // marcar activo visualmente
-        document.querySelectorAll('.chip-section').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.chip-section').forEach(c=>c.classList.remove('active'));
         ch.classList.add('active');
       });
     });
 
     // Fullscreen helpers
     async function enterFullscreen(){
-      const el = document.documentElement; // página completa para evitar barras
-      if (el.requestFullscreen) await el.requestFullscreen();
-      else if (el.webkitRequestFullscreen) await el.webkitRequestFullscreen();
+      const el=document.documentElement;
+      if(el.requestFullscreen) await el.requestFullscreen();
+      else if(el.webkitRequestFullscreen) await el.webkitRequestFullscreen();
     }
     async function exitFullscreen(){
-      if (document.fullscreenElement) await document.exitFullscreen();
-      else if (document.webkitFullscreenElement) await document.webkitExitFullscreen();
+      if(document.fullscreenElement) await document.exitFullscreen();
+      else if(document.webkitFullscreenElement) await document.webkitExitFullscreen();
     }
 
     // Wake Lock
     async function requestWakeLock(){
-      try {
-        if ('wakeLock' in navigator) {
+      try{
+        if('wakeLock' in navigator){
           wakeLock = await navigator.wakeLock.request('screen');
-          wakeLock.addEventListener('release', () => console.log('Wake Lock liberado'));
+          wakeLock.addEventListener('release',()=>console.log('Wake Lock liberado'));
         }
-      } catch(e){ console.warn('Wake Lock no disponible', e); }
+      }catch(e){ console.warn('Wake Lock no disponible', e); }
     }
-    async function releaseWakeLock(){
-      try { if (wakeLock) { await wakeLock.release(); wakeLock = null; } } catch {}
-    }
+    async function releaseWakeLock(){ try{ if(wakeLock){ await wakeLock.release(); wakeLock=null; } }catch{} }
 
-    // Render modos
+    // Render de modos
     function renderMode(){
-      layerAzul.style.display = 'none';
-      layerAmarillo.style.display = 'none';
-      halfLeft.style.display = 'none';
-      halfRight.style.display = 'none';
-
+      layerAzul.style.display='none';
+      layerAmarillo.style.display='none';
+      halfLeft.style.display='none';
+      halfRight.style.display='none';
       layerAzul.classList.remove('flash');
       layerAmarillo.classList.remove('flash');
 
-      if (mode === 'mitad'){
-        halfLeft.style.display = 'block';
-        halfRight.style.display = 'block';
-      } else if (mode === 'parpadeo'){
-        layerAzul.style.display = 'block';
-        layerAmarillo.style.display = 'block';
-        layerAzul.classList.add('flash');
-        layerAmarillo.classList.add('flash');
-        layerAmarillo.style.mixBlendMode = 'difference'; // crea alternancia visual sin timers
-      } else if (mode === 'fijo-azul'){
-        layerAzul.style.display = 'block';
-      } else if (mode === 'fijo-amarillo'){
-        layerAmarillo.style.display = 'block';
+      if(mode==='mitad'){
+        halfLeft.style.display='block';
+        halfRight.style.display='block';
+
+      }else if(mode==='fijo-azul'){
+        layerAzul.style.display='block';
+      }else if(mode==='fijo-amarillo'){
+        layerAmarillo.style.display='block';
       }
     }
 
     // Inicio/Fin
-    startBtn.addEventListener('click', async () => {
-      // guarda sección en hash para analítica simple y para recordarla en recarga
-      const section = (sectionInput.value || '').trim();
-      if (section) {
-        const url = new URL(location.href);
+    startBtn.addEventListener('click', async ()=>{
+      const section=(sectionInput.value||'').trim();
+      if(section){
+        const url=new URL(location.href);
         url.searchParams.set('section', section);
-        history.replaceState(null, '', url);
+        history.replaceState(null,'',url);
       }
       await enterFullscreen();
       await requestWakeLock();
       renderMode();
       show.classList.add('showing');
-      startBtn.style.display = 'none';
-      stopBtn.style.display = 'inline-block';
-      statusEl.textContent = section ? `Sección: ${section}` : 'Activo';
-      statusEl.style.background = 'rgba(16,185,129,.18)';
-      statusEl.style.border = '1px solid rgba(16,185,129,.35)';
+      startBtn.style.display='none';
+      stopBtn.style.display='inline-block';
     });
 
-    stopBtn.addEventListener('click', async () => {
+    stopBtn.addEventListener('click', async ()=>{
       show.classList.remove('showing');
       await releaseWakeLock();
       await exitFullscreen();
-      startBtn.style.display = 'inline-block';
-      stopBtn.style.display = 'none';
-      statusEl.textContent = 'Listo';
-      statusEl.removeAttribute('style');
+      startBtn.style.display='inline-block';
+      stopBtn.style.display='none';
     });
 
-    // Si el navegador sale de fullscreen por gesto del usuario, sincroniza UI
-    document.addEventListener('fullscreenchange', () => {
-      if (!document.fullscreenElement){
+    document.addEventListener('fullscreenchange', ()=>{
+      if(!document.fullscreenElement){
         show.classList.remove('showing');
         releaseWakeLock();
-        startBtn.style.display = 'inline-block';
-        stopBtn.style.display = 'none';
-        statusEl.textContent = 'Listo';
-        statusEl.removeAttribute('style');
+        startBtn.style.display='inline-block';
+        stopBtn.style.display='none';
       }
     });
   </script>
 </body>
 </html>
+
